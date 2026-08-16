@@ -1,0 +1,683 @@
+/* ================================
+   NOTIFYHUB - GLOBAL DESIGN
+   ================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(100, 55, 210, 0.28), transparent 35%),
+    radial-gradient(circle at 15% 35%, rgba(0, 160, 220, 0.12), transparent 30%),
+    #080b18;
+  color: #f5f7ff;
+}
+
+/* ================================
+   NAVBAR
+   ================================ */
+
+nav {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 7%;
+  background: rgba(9, 14, 28, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 20;
+  backdrop-filter: blur(14px);
+}
+
+nav a {
+  color: #e9edff;
+  text-decoration: none;
+  margin-left: 34px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+nav a:hover {
+  color: #a78bfa;
+}
+
+nav a:first-child {
+  margin-left: 0;
+}
+
+/* NotifyHub logo/title */
+nav h1,
+nav h2,
+nav .logo,
+nav > div:first-child {
+  color: white;
+}
+
+/* ================================
+   PAGE COMMON
+   ================================ */
+
+main,
+.page,
+.page-container,
+.content {
+  width: 86%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 70px 0;
+}
+
+h1 {
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.1;
+  margin-bottom: 18px;
+  color: #ffffff;
+  letter-spacing: -1px;
+}
+
+h2 {
+  font-size: 30px;
+  margin-bottom: 14px;
+  color: #ffffff;
+}
+
+h3 {
+  color: #ffffff;
+}
+
+p {
+  color: #aeb7d0;
+  line-height: 1.7;
+}
+
+/* ================================
+   PAGE HEADERS
+   ================================ */
+
+.page-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.page-header h1 {
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #8b5cf6,
+    #38bdf8
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-header p {
+  font-size: 17px;
+  margin-top: 10px;
+}
+
+/* ================================
+   CARDS
+   ================================ */
+
+.card,
+.announcement-card,
+.event-card,
+.query-card,
+.admin-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(30, 35, 65, 0.82),
+      rgba(12, 16, 32, 0.94)
+    );
+
+  border: 1px solid rgba(139, 92, 246, 0.22);
+  border-radius: 22px;
+  padding: 28px;
+
+  box-shadow:
+    0 15px 50px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  transition: 0.3s ease;
+}
+
+.card:hover,
+.announcement-card:hover,
+.event-card:hover,
+.query-card:hover,
+.admin-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(139, 92, 246, 0.55);
+  box-shadow:
+    0 20px 60px rgba(91, 33, 182, 0.22),
+    0 0 30px rgba(139, 92, 246, 0.08);
+}
+
+/* ================================
+   GRIDS
+   ================================ */
+
+.cards,
+.card-grid,
+.announcement-grid,
+.events-grid,
+.query-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* ================================
+   CATEGORY BADGES
+   ================================ */
+
+.badge,
+.category {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 8px 14px;
+  border-radius: 999px;
+
+  background: rgba(139, 92, 246, 0.14);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+
+  color: #bda7ff;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+
+/* ================================
+   DATE
+   ================================ */
+
+.date {
+  margin-top: 22px;
+  padding-top: 18px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  color: #7dd3fc;
+  font-weight: 700;
+}
+
+/* ================================
+   BUTTONS
+   ================================ */
+
+button {
+  border: none;
+  border-radius: 12px;
+  padding: 13px 22px;
+
+  background: linear-gradient(
+    135deg,
+    #7c3aed,
+    #6366f1
+  );
+
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: 0.25s ease;
+
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.25);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(124, 58, 237, 0.4);
+}
+
+/* Secondary button */
+button.secondary {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+
+/* ================================
+   INPUTS
+   ================================ */
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 14px 16px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+
+  outline: none;
+  font-size: 14px;
+
+  transition: 0.25s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #7f8aa8;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+
+select option {
+  background: #10152a;
+  color: white;
+}
+
+/* ================================
+   FORMS
+   ================================ */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  background: rgba(18, 23, 43, 0.75);
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  border-radius: 22px;
+  padding: 28px;
+}
+
+/* ================================
+   SEARCH
+   ================================ */
+
+.search-box {
+  max-width: 600px;
+  margin: 0 auto 35px;
+}
+
+/* ================================
+   EMPTY STATES
+   ================================ */
+
+.empty-state {
+  text-align: center;
+  padding: 55px 25px;
+
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px dashed rgba(139, 92, 246, 0.3);
+  border-radius: 20px;
+}
+
+.empty-state h3 {
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  color: #7f8aa8;
+}
+
+/* ================================
+   ADMIN
+   ================================ */
+
+.admin-section {
+  margin-bottom: 35px;
+}
+
+.admin-section h2 {
+  margin-bottom: 18px;
+}
+
+.admin-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.admin-card {
+  min-height: 200px;
+}
+
+/* ================================
+   GLOW EFFECTS
+   ================================ */
+
+.glow-purple {
+  box-shadow:
+    0 0 40px rgba(139, 92, 246, 0.12);
+}
+
+.glow-blue {
+  box-shadow:
+    0 0 40px rgba(56, 189, 248, 0.10);
+}
+
+/* ================================
+   MOBILE
+   ================================ */
+
+@media (max-width: 800px) {
+  nav {
+    padding: 0 5%;
+  }
+
+  nav a {
+    margin-left: 12px;
+    font-size: 13px;
+  }
+
+  main,
+  .page,
+  .page-container,
+  .content {
+    width: 92%;
+    padding: 45px 0;
+  }
+
+  .admin-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    height: auto;
+    min-height: 70px;
+    flex-direction: column;
+    gap: 15px;
+    padding: 18px;
+  }
+
+  nav a {
+    margin-left: 8px;
+  }
+
+  h1 {
+    font-size: 38px;
+  }
+}
+/* ================================
+   NOTIFYHUB HOME PAGE
+   ================================ */
+
+.home-page {
+  min-height: calc(100vh - 80px);
+  width: 100%;
+}
+
+.hero {
+  width: 100%;
+  min-height: calc(100vh - 80px);
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 60px;
+  padding: 70px 7%;
+}
+
+.hero-left {
+  max-width: 720px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  color: #c4b5fd;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 6vw, 78px);
+  line-height: 1.05;
+  margin-bottom: 25px;
+  color: white;
+}
+
+.hero h1 span {
+  background: linear-gradient(90deg, #a78bfa, #38bdf8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-left > p {
+  max-width: 700px;
+  font-size: 18px;
+  color: #aeb7d0;
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.hero-buttons button {
+  min-width: 190px;
+}
+
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: none;
+}
+
+.secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ================================
+   HOME RIGHT NOTIFICATION
+   ================================ */
+
+.hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notification-circle {
+  width: 390px;
+  min-height: 390px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 55px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(124, 58, 237, 0.24),
+      rgba(15, 23, 42, 0.8) 65%
+    );
+
+  border: 1px solid rgba(139, 92, 246, 0.35);
+
+  box-shadow:
+    0 0 80px rgba(124, 58, 237, 0.18),
+    inset 0 0 60px rgba(56, 189, 248, 0.04);
+}
+
+.bell {
+  font-size: 58px;
+  margin-bottom: 5px;
+}
+
+.signal {
+  color: #8b5cf6;
+  font-size: 22px;
+  letter-spacing: 7px;
+  margin-bottom: 15px;
+}
+
+.notification-circle h2 {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.notification-circle p {
+  font-size: 15px;
+  max-width: 260px;
+}
+
+.live {
+  margin-top: 22px;
+  color: #67e8f9;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ================================
+   NAVBAR FIX
+   ================================ */
+
+.navbar {
+  width: 100%;
+  height: 80px;
+  background: rgba(9, 14, 28, 0.94);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  position: relative;
+  z-index: 100;
+}
+
+.nav-container {
+  width: 86%;
+  max-width: 1200px;
+  height: 100%;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar .logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.nav-links a {
+  color: #e9edff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  transition: 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: #a78bfa;
+}
+
+/* ================================
+   MOBILE HOME
+   ================================ */
+
+@media (max-width: 850px) {
+
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 55px 6%;
+  }
+
+  .hero-left {
+    margin: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-right {
+    margin-top: 20px;
+  }
+
+  .notification-circle {
+    width: 320px;
+    min-height: 320px;
+  }
+
+  .nav-container {
+    width: 92%;
+  }
+
+  .nav-links {
+    gap: 14px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .navbar {
+    height: auto;
+    padding: 18px 0;
+  }
+
+  .nav-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero h1 {
+    font-size: 45px;
+  }
+
+  .notification-circle {
+    width: 280px;
+    min-height: 280px;
+    padding: 35px;
+  }
+
+}

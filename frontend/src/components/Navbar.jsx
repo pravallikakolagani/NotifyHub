@@ -1,33 +1,23 @@
 function Navbar() {
-  const goTo = (path) => {
-    window.location.href = path;
-  };
-
   return (
     <nav className="navbar">
       <div className="nav-container">
 
-        <div
-          className="logo"
-          onClick={() => goTo("/")}
-        >
-          NotifyHub
-        </div>
+        {/* NotifyHub Logo */}
+        <a href="/" className="notifyhub-logo">
+          <span className="logo-icon">🔔</span>
+          <span className="logo-text">
+            Notify<span>Hub</span>
+          </span>
+        </a>
 
+        {/* Navigation */}
         <div className="nav-links">
-          <button onClick={() => goTo("/")}>Home</button>
-          <button onClick={() => goTo("/announcements")}>
-            Announcements
-          </button>
-          <button onClick={() => goTo("/events")}>
-            Events
-          </button>
-          <button onClick={() => goTo("/queries")}>
-            Queries
-          </button>
-          <button onClick={() => goTo("/admin")}>
-            Admin
-          </button>
+          <a href="/">Home</a>
+          <a href="/announcements">Announcements</a>
+          <a href="/events">Events</a>
+          <a href="/queries">Queries</a>
+          <a href="/admin">Admin</a>
         </div>
 
       </div>

@@ -1,5 +1,12 @@
 {
   "dependencies": {
     "react-router-dom": "^7.18.2"
+  },
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.5",
+    "vite": "^8.2.1"
   }
 }

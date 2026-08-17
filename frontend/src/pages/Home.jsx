@@ -5,45 +5,47 @@ function Home() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    // Get latest announcements
     fetch("http://localhost:5000/api/announcements")
       .then((response) => response.json())
       .then((data) => {
-        setAnnouncements(data.slice(0, 3));
+        setAnnouncements(Array.isArray(data) ? data : []);
       })
       .catch((error) => {
         console.error("Failed to load announcements:", error);
       });
 
-    // Get latest events
     fetch("http://localhost:5000/api/events")
       .then((response) => response.json())
       .then((data) => {
-        setEvents(data.slice(0, 3));
+        setEvents(Array.isArray(data) ? data : []);
       })
       .catch((error) => {
         console.error("Failed to load events:", error);
       });
   }, []);
 
+  const latestAnnouncement = announcements[0];
+  const latestEvent = events[0];
+
   return (
-    <div className="home-page">
+    <div className="new-home">
 
-      {/* =========================
-          EXISTING HERO
-      ========================= */}
+      {/* ================= HERO ================= */}
 
-      <section className="hero">
+      <section className="new-hero">
 
-        <div className="hero-left">
+        <div className="hero-content-new">
 
-          <div className="hero-badge">
-            🎓 Your College Information Hub
+          <div className="college-badge">
+            🎓 <span>Your College Information Hub</span>
           </div>
 
           <h1>
-            Welcome to <span>NotifyHub</span>
+            Welcome to
+            <span>NotifyHub</span>
           </h1>
+
+          <div className="hero-line"></div>
 
           <p>
             Stay connected with everything happening in your college.
@@ -51,9 +53,10 @@ function Home() {
             to your questions — all in one place.
           </p>
 
-          <div className="hero-buttons">
+          <div className="hero-buttons-new">
 
             <button
+              className="announcement-btn"
               onClick={() => {
                 window.location.href = "/announcements";
               }}
@@ -62,7 +65,7 @@ function Home() {
             </button>
 
             <button
-              className="secondary-btn"
+              className="events-btn"
               onClick={() => {
                 window.location.href = "/events";
               }}
@@ -74,28 +77,35 @@ function Home() {
 
         </div>
 
-        <div className="hero-right">
+        {/* Notification visual */}
 
-          <div className="notification-circle">
+        <div className="notification-visual">
 
-            <div className="bell">
+          <div className="notification-glow"></div>
+
+          <div className="notification-card-new">
+
+            <div className="bell-new">
               🔔
+              <span className="notification-number">
+                {announcements.length}
+              </span>
             </div>
 
-            <div className="signal">
-              |||
+            <div className="signal-new">
+              ))) 
             </div>
 
-            <h2>
-              Stay in the Loop
-            </h2>
+            <h2>Stay in the Loop</h2>
 
             <p>
-              Your college updates, right when you need them.
+              Your college updates,
+              <br />
+              right when you need them.
             </p>
 
-            <div className="live">
-              ● LIVE UPDATES
+            <div className="live-update">
+              <span>●</span> LIVE UPDATES
             </div>
 
           </div>
@@ -105,26 +115,32 @@ function Home() {
       </section>
 
 
-      {/* =========================
-          LATEST ANNOUNCEMENTS
-      ========================= */}
+      {/* ================= ANNOUNCEMENTS ================= */}
 
-      <section className="home-section">
+      <section className="home-section announcements-section">
 
-        <div className="home-section-header">
+        <div className="section-heading-row">
 
-          <div>
-            <div className="page-label">
-              📢 COLLEGE UPDATES
+          <div className="section-title-area">
+
+            <div className="section-icon purple-icon">
+              📢
             </div>
 
-            <h2>
-              Latest <span>Announcements</span>
-            </h2>
+            <div>
+              <div className="section-label purple-text">
+                📢 COLLEGE UPDATES
+              </div>
+
+              <h2>
+                Latest <span>Announcements</span>
+              </h2>
+            </div>
+
           </div>
 
           <button
-            className="secondary-btn"
+            className="view-all purple-outline"
             onClick={() => {
               window.location.href = "/announcements";
             }}
@@ -135,88 +151,86 @@ function Home() {
         </div>
 
 
-        {announcements.length === 0 ? (
+        {latestAnnouncement ? (
 
-          <div className="glass-card empty-state">
+          <div className="announcement-home-card">
 
-            <div className="empty-icon">
-              📭
+            <div className="announcement-icon-large">
+              📣
             </div>
 
-            <h3>
-              No announcements yet
-            </h3>
+            <div className="announcement-main">
 
-            <p>
-              New college announcements will appear here.
-            </p>
+              <div className="announcement-category">
+                {latestAnnouncement.category}
+              </div>
+
+              <h3>
+                {latestAnnouncement.title}
+              </h3>
+
+              <p>
+                {latestAnnouncement.description}
+              </p>
+
+            </div>
+
+            <div className="announcement-date">
+              <span>📅</span>
+              <strong>
+                {latestAnnouncement.date}
+              </strong>
+            </div>
 
           </div>
 
         ) : (
 
-          <div className="card-grid">
-
-            {announcements.map((item) => (
-
-              <div
-                className="glass-card announcement-card"
-                key={item.id}
-              >
-
-                <div className="announcement-top">
-
-                  <span className="category-badge">
-                    {item.category || "General"}
-                  </span>
-
-                  <span className="card-date">
-                    📅 {item.date}
-                  </span>
-
-                </div>
-
-                <h3>
-                  {item.title}
-                </h3>
-
-                <p>
-                  {item.description}
-                </p>
-
-              </div>
-
-            ))}
-
+          <div className="empty-home-card">
+            <div>📢</div>
+            <h3>No announcements yet</h3>
+            <p>New college announcements will appear here.</p>
           </div>
 
+        )}
+
+        {announcements.length > 1 && (
+          <div className="slider-dots">
+            <span className="active"></span>
+            <span></span>
+            <span></span>
+          </div>
         )}
 
       </section>
 
 
-      {/* =========================
-          UPCOMING EVENTS
-      ========================= */}
+      {/* ================= EVENTS ================= */}
 
-      <section className="home-section">
+      <section className="home-section events-section">
 
-        <div className="home-section-header">
+        <div className="section-heading-row">
 
-          <div>
+          <div className="section-title-area">
 
-            <div className="page-label">
-              🎉 CAMPUS ACTIVITIES
+            <div className="section-icon green-icon">
+              🗓️
             </div>
 
-            <h2>
-              Upcoming <span>Events</span>
-            </h2>
+            <div>
+              <div className="section-label green-text">
+                🎉 CAMPUS ACTIVITIES
+              </div>
+
+              <h2>
+                Upcoming <span>Events</span>
+              </h2>
+            </div>
 
           </div>
 
           <button
-            className="secondary-btn"
+            className="view-all green-outline"
             onClick={() => {
               window.location.href = "/events";
             }}
@@ -227,74 +241,115 @@ function Home() {
         </div>
 
 
-        {events.length === 0 ? (
+        {latestEvent ? (
 
-          <div className="glass-card empty-state">
+          <div className="event-home-card">
 
-            <div className="empty-icon">
-              🗓️
+            <div className="event-image-placeholder">
+              🎓
+              <div className="confetti">✦</div>
+              <div className="confetti two">✦</div>
+              <div className="confetti three">✦</div>
             </div>
 
-            <h3>
-              No upcoming events
-            </h3>
+            <div className="event-home-content">
 
-            <p>
-              New college events will appear here when they are published.
-            </p>
+              <div className="event-category">
+                {latestEvent.category}
+              </div>
+
+              <h3>
+                {latestEvent.title}
+              </h3>
+
+              <p>
+                {latestEvent.description}
+              </p>
+
+              <div className="event-details">
+
+                <div>
+                  <span className="detail-icon">📅</span>
+                  <div>
+                    <small>DATE</small>
+                    <strong>{latestEvent.date}</strong>
+                  </div>
+                </div>
+
+                <div>
+                  <span className="detail-icon">◷</span>
+                  <div>
+                    <small>TIME</small>
+                    <strong>
+                      {latestEvent.time || "TBA"}
+                    </strong>
+                  </div>
+                </div>
+
+                <div>
+                  <span className="detail-icon">📍</span>
+                  <div>
+                    <small>LOCATION</small>
+                    <strong>
+                      {latestEvent.location || "TBA"}
+                    </strong>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
 
           </div>
 
         ) : (
 
-          <div className="card-grid">
-
-            {events.map((event) => (
-
-              <div
-                className="glass-card event-card"
-                key={event.id}
-              >
-
-                <div className="event-icon">
-                  🎓
-                </div>
-
-                <span className="category-badge">
-                  {event.category || "College Event"}
-                </span>
-
-                <h3>
-                  {event.title}
-                </h3>
-
-                <p>
-                  {event.description}
-                </p>
-
-                <div className="event-date">
-                  📅 {event.date}
-                </div>
-
-                {event.time && (
-                  <div className="event-date">
-                    ⏰ {event.time}
-                  </div>
-                )}
-
-                {event.location && (
-                  <div className="event-date">
-                    📍 {event.location}
-                  </div>
-                )}
-
-              </div>
-
-            ))}
-
+          <div className="empty-home-card">
+            <div>🎉</div>
+            <h3>No upcoming events</h3>
+            <p>New college events will appear here.</p>
           </div>
 
         )}
+
+      </section>
+
+
+      {/* ================= FEATURES ================= */}
+
+      <section className="home-features-new">
+
+        <div className="feature-card feature-purple">
+          <div className="feature-icon">🔔</div>
+          <div>
+            <h3>Real-time Updates</h3>
+            <p>Get instant notifications about important updates.</p>
+          </div>
+        </div>
+
+        <div className="feature-card feature-blue">
+          <div className="feature-icon">🗓️</div>
+          <div>
+            <h3>Event Reminder</h3>
+            <p>Never miss an important college event.</p>
+          </div>
+        </div>
+
+        <div className="feature-card feature-green">
+          <div className="feature-icon">❓</div>
+          <div>
+            <h3>Ask Questions</h3>
+            <p>Get your queries answered by the right people.</p>
+          </div>
+        </div>
+
+        <div className="feature-card feature-orange">
+          <div className="feature-icon">🛡️</div>
+          <div>
+            <h3>Trusted Information</h3>
+            <p>Official updates from your college.</p>
+          </div>
+        </div>
 
       </section>
 

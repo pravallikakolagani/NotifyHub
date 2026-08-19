@@ -39,7 +39,7 @@ function Admin() {
   const loadAnnouncements = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/announcements"
+        "https://notify-hub-a5mm.vercel.app/api/announcements"
       );
 
       const data = await response.json();
@@ -59,7 +59,7 @@ function Admin() {
   const loadEvents = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/events"
+        "https://notify-hub-a5mm.vercel.app/api/events"
       );
 
       const data = await response.json();

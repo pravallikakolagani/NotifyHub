@@ -25,7 +25,7 @@ function Queries() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/queries",
+        "https://notify-hub-a5mm.vercel.app/api/queries",
         {
           method: "POST",
           headers: {

@@ -4,7 +4,7 @@ function Events() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/events")
+    fetch("https://notify-hub-a5mm.vercel.app/api/events")
       .then((response) => response.json())
       .then((data) => {
         setEvents(data);

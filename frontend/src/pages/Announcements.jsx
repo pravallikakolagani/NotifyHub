@@ -5,7 +5,7 @@ function Announcements() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/announcements")
+    fetch("https://notify-hub-a5mm.vercel.app/api/announcements")
       .then((response) => response.json())
       .then((data) => {
         setAnnouncements(data);
